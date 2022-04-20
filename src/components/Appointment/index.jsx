@@ -9,16 +9,9 @@ import Error from "./Error";
 import Confirm from "./Confirm";
 
 export default function Appointment(props) {
-  const formatTime = () => {
-    return props.time ? `Appointment at ${props.time}` : `No Appointments`;
-    {
-      formatTime();
-    }
-  };
   return (
     <article className="appointment">
       <Header time={props.time} />
-
       {props.interview ? (
         <Show onEdit={props.onEdit} onDelete={props.onDelete} />
       ) : (
@@ -27,3 +20,11 @@ export default function Appointment(props) {
     </article>
   );
 }
+
+
+  // const formatTime = () => {
+  //   return props.time ? `Appointment at ${props.time}` : `No Appointments`;
+  //   {
+  //     formatTime();
+  //   }
+  // };
