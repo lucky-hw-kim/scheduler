@@ -10,7 +10,7 @@ export default function Form(props) {
 
   const cancel = function () {
     reset()
-    return props.onCancel
+    props.onCancel();
   }
 
   const [student, setStudent] = useState(props.student || "");
