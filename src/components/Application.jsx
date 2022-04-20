@@ -36,8 +36,8 @@ export default function Application(props) {
         <section className="schedule">
        <DayList
        days={days}
-       day={day}
-       setDay={setDay}
+       value={day}
+       onChange={setDay}
        />
       </section>
         </nav>
