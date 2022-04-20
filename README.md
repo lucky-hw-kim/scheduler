@@ -1,5 +1,6 @@
 # Interview Scheduler
-### The Scheduler client application created using Create React App. Express is the basis for the Scheduler API server application.
+### The Scheduler client application created using Create React App. 
+### Express is the basis for the Scheduler API server application.
 
 - Development focuses on a single page application (SPA) called Interview Scheduler, built using React.
 - Data is persisted by the API server using a PostgreSQL database.
