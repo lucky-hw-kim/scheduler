@@ -1,5 +1,4 @@
 export function getAppointmentsForDay(state, day) {
-
   const filteredDay = state.days.filter((d) =>{
     if(!d.name) {
       return []
@@ -16,6 +15,22 @@ export function getAppointmentsForDay(state, day) {
     }
     return appArr
   }
+}
+
+export function getInterview (state, interview){
+  if(!interview) {
+    return interview
+  }
+  const appointmentArr = Object.values(state.appointments)
+  const filterInterview = appointmentArr.filter((app)=>{
+    if(app.interview != null){
+      if(app.interview.interviewer == interview.interviewer){
+        return app.interview.interviewer = {...state.interviewers[interview.interviewer]}
+      }
+    }
+  })
+
+  return filterInterview[0].interview
 }
 
 
