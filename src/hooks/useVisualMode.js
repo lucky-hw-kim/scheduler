@@ -5,19 +5,19 @@ export function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 
   function transition(newMode, replace = false) {
-    if(replace) {
-    setHistory((prev) => [...prev])
-    setMode(newMode);
+    if (replace) {
+      setHistory((prev) => [...prev]);
+      setMode(newMode);
     } else {
-    setMode(newMode);
-    setHistory((prev) => [...prev, newMode]);
+      setMode(newMode);
+      setHistory((prev) => [...prev, newMode]);
     }
   }
 
   function back() {
-    if(history.length > 1){
-    history.pop();
-    setMode(history[history.length - 1]);
+    if (history.length > 1) {
+      history.pop();
+      setMode(history[history.length - 1]);
     } else {
       setMode(initial);
     }

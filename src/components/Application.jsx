@@ -3,7 +3,18 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
+
+/**
+ * Issue needs to be fixed: 
+ * 1. in error mode form deleting name
+ * 2. editing name not selected
+ * 
+ */
 
 
 export default function Application(props) {
@@ -11,7 +22,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -23,16 +34,54 @@ export default function Application(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers"),
     ]).then((all) => {
-      setState(prev => ({
-        ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data
+      setState((prev) => ({
+        ...prev,
+        days: all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data,
       }));
     });
   }, []);
-  // console.log('state.interviewers', state.interviewers)
+
+
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return(
+    axios.put(`/api/appointments/${id}`, {...appointment})
+    .then( setState({ ...state, appointments })
+    ))
+  }
+
+function cancelInterview(id, interview) {
+  const appointment = {
+    ...state.appointments[id],
+    interview: { ...interview }
+  };
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+
+  return(
+    axios.delete(`/api/appointments/${id}`, {...appointment})
+    .then( setState({ ...state, appointments})
+    )
+  )
+}
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -43,11 +92,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            days={state.days}
-            value={state.day}
-            onChange={setDay}
-          />
+          <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -58,13 +103,17 @@ export default function Application(props) {
       <section className="schedule">
         {dailyAppointments.map((appointment) => {
           const interview = getInterview(state, appointment.interview);
-          return <Appointment 
-          key={appointment.id}
-          id={appointment.id}
-          time={appointment.time}
-          interview={interview}
-          interviewers={dailyInterviewers}
-           />;
+          return (
+            <Appointment
+              key={appointment.id}
+              id={appointment.id}
+              time={appointment.time}
+              interview={interview}
+              interviewers={dailyInterviewers}
+              bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
+            />
+          );
         })}
         <Appointment key="last" time="5pm" />
       </section>
