@@ -1,25 +1,40 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import "components/Application.scss";
-// import DayList from "./DayList";
-// import Appointment from "./Appointment";
+import React from "react";
+import useApplicationData from "hooks/useApplicationData";
+import DayList from "./DayList";
+import Appointment from "./Appointment";
+import './Application.scss'
 import {
   getAppointmentsForDay,
   getInterview,
   getInterviewersForDay,
 } from "helpers/selectors";
 
-export default function Application(props) {
 
+export default function Application(props) {
 
   const {
     state,
     setDay,
     bookInterview,
     cancelInterview
-  } = userApplicationData();
+  } = useApplicationData();
 
-  
+  const interviewers = getInterviewersForDay(state, state.day);
+  const appointments = getAppointmentsForDay(state, state.day).map(
+    appointment => {
+      return (
+        <Appointment
+          key={appointment.id}
+          {...appointment}
+          interview={getInterview(state, appointment.interview)}
+          interviewers={interviewers}
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
+        />
+      );
+    }
+  );
+
   // const [state, setState] = useState({
   //   day: "Monday",
   //   days: [],
@@ -95,20 +110,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {dailyAppointments.map((appointment) => {
-          const interview = getInterview(state, appointment.interview);
-          return (
-            <Appointment
-              key={appointment.id}
-              id={appointment.id}
-              time={appointment.time}
-              interview={interview}
-              interviewers={dailyInterviewers}
-              bookInterview={bookInterview}
-              cancelInterview={cancelInterview}
-            />
-          );
-        })}
+        {appointments}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
