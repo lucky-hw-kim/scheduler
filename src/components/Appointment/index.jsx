@@ -39,6 +39,7 @@ export default function Appointment(props) {
   function deleteForReal() {
   
     transition(DELETING, true);
+
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
