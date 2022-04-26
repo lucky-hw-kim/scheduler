@@ -39,9 +39,8 @@ export default function Appointment(props) {
   function deleteForReal() {
   
     transition(DELETING, true);
-    const interview = null;
     props
-      .cancelInterview(props.id, interview)
+      .cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true))
   }
@@ -81,7 +80,7 @@ export default function Appointment(props) {
       {mode === CONFIRM && (
         <Confirm
           message={"Are you sure you would like to delete?"}
-          onCancel={()=>{back()}}
+          onCancel={back}
           onConfirm={
             deleteForReal
           }
@@ -89,23 +88,23 @@ export default function Appointment(props) {
       )}
       {mode === EDIT && (
         <Form
-          interviewer={props.interview.interviewer}
+          interviewer={props.interview.interviewer.id}
           student={props.interview.student}
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={()=>{back()}}
+          onCancel={back}
         />
       )}
       {mode === ERROR_SAVE && (
         <Error
           message={"ERROR when saving..."}
-          onClose={()=>{back()}}
+          onClose={back}
         />
       )}
       {mode === ERROR_DELETE && (
         <Error
           message={"ERROR when deleting..."}
-          onClose={()=>{back()}}
+          onClose={back}
         />
       )}
       {mode === SAVING && <Status message={"Saving..."} />}
