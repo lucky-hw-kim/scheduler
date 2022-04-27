@@ -1,24 +1,21 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10.16
+   deploy:
+  machine:
+    enabled: true
 
-    working_directory: ~/client
+  working_directory: ~/client
 
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
-
+  steps:
+    - add_ssh_keys:
+        fingerprints:
+          - "20:5c:29:d6:81:76:bb:73:13:12:4f:0d:bd:d3:0e:72"
+    - checkout
+    - run:
+        name: Push Master to Production
+        command: |
+          git push https://github.com/lighthouse-labs/scheduler.git master:production
 workflows:
   version: 2
   test:
