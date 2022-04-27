@@ -17,21 +17,16 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  if (!interview) {
-    return interview;
-  }
-  const appointmentArr = Object.values(state.appointments);
-  const filterInterview = appointmentArr.filter((app) => {
-    if (app.interview != null) {
-      if (app.interview.interviewer == interview.interviewer) {
-        return (app.interview.interviewer = {
-          ...state.interviewers[interview.interviewer],
-        });
-      }
-    }
-  });
-  return filterInterview[0].interview;
-}
+  if (!interview) return interview;
+
+  const filteredInterview = {
+    student: interview.student,
+  };
+
+  filteredInterview.interviewer = state.interviewers[interview.interviewer];
+  return filteredInterview;
+};
+
 
 export function getInterviewersForDay(state, day) {
   const filteredDay = state.days.filter((d) => {
