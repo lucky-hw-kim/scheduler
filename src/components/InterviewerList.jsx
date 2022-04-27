@@ -4,7 +4,6 @@ import InterviewerListItem from "./InterviewerListItem";
 import PropTypes from "prop-types";
 
 function InterviewerList(props) {
-  console.log("PROPS!%%", props);
 
   const interviewerList = props.interviewers.map((interviewer) => {
     return (

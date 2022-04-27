@@ -47,7 +47,6 @@ export function getInterviewersForDay(state, day) {
     for (let id of filteredDay[0].interviewers) {
       interviewerArr.push(state.interviewers[id]);
     }
-    // console.log(interviewerArr);
     return interviewerArr;
   }
 }

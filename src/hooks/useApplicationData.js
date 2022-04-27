@@ -2,6 +2,8 @@ import axios from "axios";
 // import "components/Application.scss";
 import { useEffect, useReducer } from "react";
 
+
+
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";

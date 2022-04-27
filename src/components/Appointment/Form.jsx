@@ -17,6 +17,7 @@ export default function Form(props) {
       return;
     }
 
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -33,7 +34,6 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  console.log("interviewer!!:",props.interviewer);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -47,7 +47,7 @@ export default function Form(props) {
             onChange={(e) => setStudent(e.target.value)}
             data-testid="student-name-input"
           />
-          <section className="appointment__validation">{error}</section>
+          <section className="appointment__validation">{(student === '')&&(error) || (interviewer === null)&&(error)}</section>
         </form>
         <InterviewerList
         interviewers = {props.interviewers}
@@ -57,8 +57,8 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>
-            Cancel
+          <Button danger onClick={cancel} >
+            Cancel 
           </Button>
           <Button confirm onClick={validate}>
             Save
@@ -68,3 +68,5 @@ export default function Form(props) {
     </main>
   );
 }
+
+

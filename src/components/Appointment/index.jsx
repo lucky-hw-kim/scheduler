@@ -47,12 +47,11 @@ export default function Appointment(props) {
   }
 
   return (
-    <article className="appointment">
+    <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && (
         <Empty
           onAdd={() => {
-            console.log("Clicked on Add");
             return transition(CREATE);
           }}
         />
