@@ -15,7 +15,7 @@ jobs:
     - run:
         name: Push Master to Production
         command: |
-          git push master
+          git push https://github.com/lucky-hw-kim/scheduler master:production
 workflows:
   version: 2
   test_and_deploy:
