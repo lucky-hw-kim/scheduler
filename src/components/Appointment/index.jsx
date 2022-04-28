@@ -46,6 +46,15 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_DELETE, true))
   }
 
+  useEffect(() => {
+    if (props.interview && mode === EMPTY) {
+     transition(SHOW);
+    }
+    if (props.interview === null && mode === SHOW) {
+     transition(EMPTY);
+    }
+   }, [props.interview, transition, mode]);
+
   return (
     <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
@@ -56,7 +65,7 @@ export default function Appointment(props) {
           }}
         />
       )}
-      {mode === SHOW && (
+      {mode === SHOW && props.interview && (
         <Show
           interviewer={props.interview.interviewer}
           student={props.interview.student}

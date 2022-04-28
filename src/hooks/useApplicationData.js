@@ -21,6 +21,23 @@ const useApplicationData = () => {
 
   const setDay = (day) => dispatch({ type: SET_DAY, day: day });
 
+  // WebSocket Config
+
+  const schedularWS = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+  schedularWS.onopen = function () {
+    schedularWS.send('ping');
+  };
+
+  schedularWS.onmessage = (event) => {
+    const appointmentData = JSON.parse(event.data);
+    if (appointmentData.type === 'SET_INTERVIEW') {
+      dispatch({
+        type: SET_INTERVIEW,
+        id: appointmentData.id,
+        interview: appointmentData.interview,
+      });
+    }
+  };
 
   // import data and update state
   useEffect(() => {
