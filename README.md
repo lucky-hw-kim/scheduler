@@ -94,6 +94,8 @@ npm run storybook
 
 </br>
 
+*  Webpack
+*  Babel
 *  nodeJS
 *  React
 *  Axios
