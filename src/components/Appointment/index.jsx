@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
 import Show from "./Show";
@@ -8,6 +8,7 @@ import Form from "./Form";
 import Status from "./Status";
 import Error from "./Error";
 import Confirm from "./Confirm";
+
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
