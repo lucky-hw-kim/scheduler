@@ -12,7 +12,7 @@ The Scheduler client application created using Create React App. User can book, 
 ## Screen Shots & GIF demo
 
 
-![alt Demo_GIF](https://user-images.githubusercontent.com/94889218/165666781-a8cd1598-52e6-4db0-8881-2ec095c677d4.png)
+![alt Demo_GIF](https://github.com/lucky-hw-kim/scheduler/blob/master/doc/Interview-Scheduler_demo.gif?raw=true)
 
 ![alt Demo_Error_GIF](https://github.com/lucky-hw-kim/scheduler/blob/master/doc/Interview-Scheduler_Error_demo.gif?raw=true)
 
