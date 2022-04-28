@@ -14,7 +14,7 @@ const useApplicationData = () => {
   // Reducer Hook
 
     /* Working on Stretch work */
-    const schedularWS = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL); //REACT_APP_WEBSOCKET_URL
+    const schedularWS = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
     schedularWS.onopen = function () {
       schedularWS.send('ping');
     };
