@@ -13,22 +13,22 @@ const useApplicationData = () => {
 
   // Reducer Hook
 
-    /* Working on Stretch work */
-    const schedularWS = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    schedularWS.onopen = function () {
-      schedularWS.send('ping');
-    };
 
-    schedularWS.onmessage = (event) => {
-      const appointmentData = JSON.parse(event.data);
-      if (appointmentData.type === 'SET_INTERVIEW') {
-        dispatch({
-          type: SET_INTERVIEW,
-          id: appointmentData.id,
-          interview: appointmentData.interview,
-        });
-      }
-    };
+    // const schedularWS = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    // schedularWS.onopen = function () {
+    //   schedularWS.send('ping');
+    // };
+
+    // schedularWS.onmessage = (event) => {
+    //   const appointmentData = JSON.parse(event.data);
+    //   if (appointmentData.type === 'SET_INTERVIEW') {
+    //     dispatch({
+    //       type: SET_INTERVIEW,
+    //       id: appointmentData.id,
+    //       interview: appointmentData.interview,
+    //     });
+    //   }
+    // };
 
 
   const [state, dispatch] = useReducer(reducer, {
