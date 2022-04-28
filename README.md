@@ -1,13 +1,18 @@
 # Interview Scheduler
-### The Scheduler client application created using Create React App. 
-### Express is the basis for the Scheduler API server application.
+
+The Scheduler client application created using Create React App. User can book, edit and cancel an appointment with an interviwer of their choices at available time using the app.
+
+## Main Features
 
 - Development focuses on a single page application (SPA) called Interview Scheduler, built using React.
-- Data is persisted by the API server using a PostgreSQL database.
+- Data is persisted by the API server using Heroku and local development server
 - The client application communicates with an API server over HTTP, using the JSON format.
-- Jest tests are used through the development of the project
+- Jest, Storybook and Cypress tests are used through the development of the project
 
-# Functionality
+## Screen Shots & GIF demo
+
+## Indepth Functionalities
+
 - Interviews can be booked between Monday and Friday.
 - A user can switch between weekdays.
 - A user can book an interview in an empty appointment slot.
@@ -20,7 +25,8 @@
 - A user is shown an error if an interview cannot be saved or deleted.
 - A user is shown a status indicator while asynchronous operations are in progress.
 - When the user presses the close button of the error they are returned to the Form or Show view (skipping Status and Confirm).
-- The application makes API requests to load and persist data. We do not lose data after a browser refresh.
+- The application makes API requests to load and persist data. We do not lose data after a browser refresh. 
+
 
 ## Setup
 
@@ -43,3 +49,43 @@ npm test
 ```sh
 npm run storybook
 ```
+
+### Dependencies
+* React
+* Axios
+* Classnames
+* Normalize.css
+* React-dom
+* React-scripts
+* Babel/core
+* Storybook/addon-actions
+* Storybook/addon-backgrounds
+* Storybook/addon-links
+* Storybook/addons
+* Storybook/react
+* Testing-library/jest-dom
+* Testing-library/react
+* Testing-library/react-hooks
+* Babel-loader
+* Node-sass
+* Prop-types
+* React-test-renderer
+
+### Tech Stack Used
+--Languages--
+* JavaScript
+* CSS 
+* html
+--Frameworks & Library--
+* nodeJS
+* React
+* Axios
+* SASS
+---testing---
+* Jest
+* Testing Library
+* StoryBook
+* Cypress
+
+
+

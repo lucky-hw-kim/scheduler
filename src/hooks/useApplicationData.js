@@ -11,31 +11,7 @@ import reducer, {
 
 const useApplicationData = () => {
 
-  // useEffect to get tdata from the api HEROKU
-    const daysURL = "https://lucky-scheduler.herokuapp.com/api/days"
-    const appointmentsURL = "https://lucky-scheduler.herokuapp.com/api/appointments"
-    const  interviewersURL = "https://lucky-scheduler.herokuapp.com/api/interviewers"
-
-
-
-    /* Working on Stretch work */
-    // const schedularWS = new WebSocket('ws://localhost:8001');
-    // schedularWS.onopen = function () {
-    //   schedularWS.send('Ping');
-    // };
-
-    // schedularWS.onmessage = (event) => {
-    //   const appointmentData = JSON.parse(event.data);
-    //   if (appointmentData.type === 'SET_INTERVIEW') {
-    //     dispatch({
-    //       type: SET_INTERVIEW,
-    //       id: appointmentData.id,
-    //       interview: appointmentData.interview,
-    //     });
-    //   }
-    // };
-
-
+  // Reducer Hook
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
@@ -63,6 +39,7 @@ const useApplicationData = () => {
     });
   }, []);
 
+// Send interview appointment to database
 
   function bookInterview(id, interview) {
     return axios
@@ -71,6 +48,8 @@ const useApplicationData = () => {
         dispatch({ type: SET_INTERVIEW, id, interview })
       })
   }
+
+// Delete appointment from database
 
   function cancelInterview(id) {
     return axios

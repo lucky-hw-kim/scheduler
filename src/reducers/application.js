@@ -1,10 +1,11 @@
-
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
-  
-const reducer = (state, action) => {
 
+
+// Reducer function to use on state object
+
+const reducer = (state, action) => {
   switch (action.type) {
     case SET_DAY: {
       return { ...state, day: action.day };
@@ -56,9 +57,5 @@ const reducer = (state, action) => {
   }
 };
 
-export default reducer
-export {
-  SET_DAY,
-  SET_APPLICATION_DATA,
-  SET_INTERVIEW
-}
+export default reducer;
+export { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW };

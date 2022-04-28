@@ -1,3 +1,5 @@
+// Get appointments for each days
+
 export function getAppointmentsForDay(state, day) {
   const filteredDay = state.days.filter((d) => {
     if (!d.name) {
@@ -16,6 +18,8 @@ export function getAppointmentsForDay(state, day) {
   }
 }
 
+// Get interview object joined with interviewer object
+
 export function getInterview(state, interview) {
   if (!interview) return interview;
 
@@ -25,8 +29,9 @@ export function getInterview(state, interview) {
 
   filteredInterview.interviewer = state.interviewers[interview.interviewer];
   return filteredInterview;
-};
+}
 
+// Get different interviwers for each day
 
 export function getInterviewersForDay(state, day) {
   const filteredDay = state.days.filter((d) => {
